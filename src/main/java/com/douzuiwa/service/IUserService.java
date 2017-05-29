@@ -16,4 +16,21 @@ public interface IUserService {
      */
     public ServerResponse<User> login(String username, String password) throws Exception;
 
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    public ServerResponse<String> register(User user) throws Exception;
+
+    /**
+     * 验证用户信息
+     * @param str
+     * @param type
+     * @return
+     * @throws Exception
+     */
+    public ServerResponse<String> checkValid(String str,String type) throws Exception;
+
 }
