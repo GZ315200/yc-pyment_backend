@@ -11,12 +11,12 @@
       <arg column="payment_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="postage" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="payment_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
-      <arg column="send_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
-      <arg column="end_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
-      <arg column="close_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.com.douzuiwa.dao.util.Date" />
+      <arg column="payment_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="send_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="end_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="close_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
