@@ -24,7 +24,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<User> login(String username, String password) throws Exception {
         int userCount = userMapper.selectByUsername(username);
-        Logger.info("登录的账号数:{%d}",userCount);
+        Logger.info("登录的账号数: "+userCount);
         if (userCount == 0) {
             return ServerResponse.createByErrorMsg("账号密码错误");
         }
