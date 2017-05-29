@@ -1,7 +1,10 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.User;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int selectByUsername(String username);
+
+    User selectLogin(@Param("username")String username,@Param("password") String password);
 }

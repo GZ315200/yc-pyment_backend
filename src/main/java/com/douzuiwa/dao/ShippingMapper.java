@@ -1,7 +1,9 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.Shipping;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ShippingMapper {
     int deleteByPrimaryKey(Integer id);
 

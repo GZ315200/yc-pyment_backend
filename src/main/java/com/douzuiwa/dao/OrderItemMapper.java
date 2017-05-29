@@ -1,7 +1,9 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.OrderItem;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrderItemMapper {
 
     int deleteByPrimaryKey(Integer id);

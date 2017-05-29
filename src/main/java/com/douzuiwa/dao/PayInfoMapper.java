@@ -1,7 +1,9 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.PayInfo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PayInfoMapper {
     int deleteByPrimaryKey(Integer id);
 

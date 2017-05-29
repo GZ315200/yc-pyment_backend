@@ -1,7 +1,9 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.Product;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
 

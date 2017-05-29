@@ -1,7 +1,9 @@
 package com.douzuiwa.dao;
 
 import com.douzuiwa.pojo.Cart;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CartMapper {
     int deleteByPrimaryKey(Integer id);
 
