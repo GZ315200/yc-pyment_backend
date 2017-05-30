@@ -20,7 +20,7 @@ public class UserLogin {
 
     @Test
     public void getResult(){
-        String username = "admin";
+        String username = "system";
         int count  = userMapper.selectByUsername(username);
         System.out.println(count);
     }

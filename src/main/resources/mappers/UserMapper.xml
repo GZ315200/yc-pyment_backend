@@ -163,6 +163,10 @@
   <select id="selectByPhone" resultType="int" parameterType="java.lang.String">
     select count(1) FROM dzw_user WHERE phone = #{phone}
   </select>
+  
+  <select id="selectQuestionByUsername" resultType="String" parameterType="java.lang.String">
+    SELECT question FROM dzw_user WHERE username = #{username}
+  </select>
 
   <select id="selectLogin" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
@@ -171,4 +175,41 @@
     AND password=#{password}
    </select>
 
+  <select id="selectAnswer" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List"/>
+     FROM  dzw_user WHERE
+    username=#{username} AND
+    question=#{question} AND
+    answer=#{answer}
+  </select>
+
+  <update id="updatePasswordByUsername" parameterType="java.util.Map">
+    UPDATE dzw_user SET password=#{password},update_time = now()
+    WHERE username=#{username}
+  </update>
+
+  <select id="selectPasswordById" resultType="int" parameterType="java.util.Map">
+    SELECT count(1) FROM
+    dzw_user WHERE
+    id=#{userId}
+    AND password=#{password}
+  </select>
+  
+  <select id="selectEmailById" resultType="int" parameterType="java.util.Map">
+    SELECT count(1) FROM
+    dzw_user WHERE
+    email=#{email}
+    AND
+    id!=#{userId}
+  </select>
+
+  <select id="selectAdminLogin" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List">
+    </include>
+    FROM dzw_user
+    WHERE phone={phone}
+  </select>
+  
 </mapper>
