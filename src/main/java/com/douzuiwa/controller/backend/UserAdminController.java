@@ -1,10 +1,11 @@
 package com.douzuiwa.controller.backend;
 
 import com.douzuiwa.common.Const;
+import com.douzuiwa.common.ResponseCode;
 import com.douzuiwa.common.ServerResponse;
-import com.douzuiwa.common.TokenCache;
+import com.douzuiwa.exception.GeneralServiceException;
 import com.douzuiwa.pojo.User;
-import com.douzuiwa.service.system.impl.UserAdminService;
+import com.douzuiwa.service.system.IUserAdminService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * Created by Gyges on 2017/5/30.
@@ -22,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class UserAdminController {
 
     @Resource
-    private UserAdminService userAdminService;
+    private IUserAdminService userAdminService;
 
     /**
      * 后台用户登录
@@ -39,22 +42,17 @@ public class UserAdminController {
         if (StringUtils.isBlank(messageCode)) {
             return ServerResponse.createByErrorMsg("短信验证码不为空");
         }
-        ServerResponse<User> response = userAdminService.adminLogin(phone);
-        if (response.isSuccess()) {
-            session.setAttribute(Const.CURRENT_USER, response);
-//            获取用户的messageCode
-            String loginMessageCode = TokenCache.getValue("MESSAGE_" + phone);
-            if (StringUtils.isBlank(loginMessageCode)) {
-                return ServerResponse.createByErrorMsg("参数错误,需要传递参数");
+        try {
+            ServerResponse<User> response = userAdminService.adminLogin(phone,messageCode);
+            if (response.isSuccess()) {
+                session.setAttribute(Const.CURRENT_USER, response);
+                return ServerResponse.createBySuccess("登录成功",response.getData());
             }
-            if (loginMessageCode.equals(messageCode)) {
-                return ServerResponse.createBySuccess("验证码正确");
-            } else {
-                return ServerResponse.createByErrorMsg("验证码无效，请重新获取");
-            }
-        } else {
-            return ServerResponse.createByErrorMsg("该用户为登录，重新登录");
+        }catch (Exception e){
+            String msg = MessageFormat.format("登录异常,thread:{0}", Thread.currentThread().getName());
+            throw new GeneralServiceException(msg,e);
         }
+        return ServerResponse.createByErrorCodeAndMsg(ResponseCode.NEED_LOGIN.getCode(), "用户未注册，请联系管理员");
     }
 
     /**
@@ -66,6 +64,13 @@ public class UserAdminController {
     @RequestMapping(value = "get_message_code", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> getMessageCode(String phone) {
-        return userAdminService.getMessageCode(phone);
+        ServerResponse<String> response = null;
+        try {
+            response = userAdminService.getMessageCode(phone);
+        } catch (IOException e) {
+            String msg = MessageFormat.format("获取验证码异常 phone:{0}",phone);
+            throw new GeneralServiceException(msg,e);
+        }
+        return response;
     }
 }

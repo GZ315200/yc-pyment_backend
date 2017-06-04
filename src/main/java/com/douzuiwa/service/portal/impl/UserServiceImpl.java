@@ -185,6 +185,9 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<User> updateUserInfo(User user) {
         String email = user.getEmail();
         Integer userId = user.getId();
+        Integer role = user.getRole();
+//        String answer = user.getAnswer();
+        String phone = user.getPhone();
 //        查询用户的Email是否被占用，如果占用则输入新的邮箱
         int returnCount = userMapper.selectEmailById(email, userId);
         if (returnCount > 0){
@@ -192,11 +195,10 @@ public class UserServiceImpl implements IUserService {
         }
 //        重新封装用户信息
         User updateUser = new User();
-        updateUser.setEmail(user.getEmail());
-        updateUser.setRole(user.getRole());
-        updateUser.setAnswer(user.getAnswer());
-        updateUser.setPhone(user.getPhone());
-        updateUser.setQuestion(user.getQuestion());
+        updateUser.setId(userId);
+        updateUser.setEmail(email);
+        updateUser.setRole(role);
+        updateUser.setPhone(phone);
 
         int updateCount = userMapper.updateByPrimaryKeySelective(updateUser);
         if (updateCount > 0) {
@@ -215,4 +217,13 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
     }
+
+    @Override
+    public ServerResponse<String> checkRole(User user) {
+        if (!Objects.equal(user,null) && user.getRole() == Const.Role.ROLE_ADMIN){
+            return ServerResponse.createBySuccess("管理员登录",user.getUsername());
+        }
+        return ServerResponse.createByError();
+    }
+
 }

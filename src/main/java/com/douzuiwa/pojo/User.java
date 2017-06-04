@@ -1,7 +1,11 @@
 package com.douzuiwa.pojo;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.util.Date;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//序列化时空值不显示
 public class User {
     private Integer id;
 
