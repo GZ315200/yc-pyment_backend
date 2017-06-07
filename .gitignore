@@ -5,10 +5,8 @@ bin/
 #Eclipse project files
 .classpath
 .project
-
 #idea
 .idea/
 *.iml
-
 #settings
 .settings
