@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.douzuiwa.dao.ProductMapper" >
-  <resultMap id="BaseResultMap" type="com.douzuiwa.pojo.Product" >
+<mapper namespace="com.igeek.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.igeek.pojo.Product" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -31,7 +31,7 @@
     delete from dzw_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.douzuiwa.pojo.Product" >
+  <insert id="insert" parameterType="com.igeek.pojo.Product" >
     insert into dzw_product (id, category_id, name, 
       subtitle, main_image, sub_images, 
       detail, price, stock, 
@@ -43,7 +43,7 @@
       #{status,jdbcType=INTEGER}, now(), now()
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.douzuiwa.pojo.Product" >
+  <insert id="insertSelective" parameterType="com.igeek.pojo.Product" >
     insert into dzw_product
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.douzuiwa.pojo.Product" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.igeek.pojo.Product" >
     update dzw_product
     <set >
       <if test="categoryId != null" >
@@ -161,7 +161,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.douzuiwa.pojo.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.igeek.pojo.Product" >
     update dzw_product
     set category_id = #{categoryId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -176,4 +176,39 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectProductList" resultMap="BaseResultMap">
+    SELECT  <include refid="Base_Column_List"/>
+    FROM  dzw_product
+    ORDER by id ASC
+  </select>
+
+  <select id="selectListByProductNameAndProductId" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT <include refid="Base_Column_List"/>
+    FROM  dzw_product
+    <where>
+      <if test="productName != null">
+        AND name LIKE #{productName}
+      </if>
+      <if test="productId != null">
+        AND id = #{productId}
+      </if>
+    </where>
+  </select>
+  
+  <select id="selectListByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT <include refid="Base_Column_List">
+  </include>
+    FROM  dzw_product
+    WHERE status = 1
+    <if test="productName != null">
+    and name like #{productName}
+    </if>
+    <if test="categoryIdList != null">
+      and category_id IN
+      <foreach collection="categoryIdList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
 </mapper>

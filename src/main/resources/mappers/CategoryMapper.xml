@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.douzuiwa.dao.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.douzuiwa.pojo.Category" >
+<mapper namespace="com.igeek.dao.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.igeek.pojo.Category" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -25,7 +25,7 @@
     delete from dzw_category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.douzuiwa.pojo.Category" >
+  <insert id="insert" parameterType="com.igeek.pojo.Category" >
     insert into dzw_category (id, parent_id, name, 
       status, sort_order, create_time, 
       update_time)
@@ -33,7 +33,7 @@
       #{status,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, now(),
       now())
   </insert>
-  <insert id="insertSelective" parameterType="com.douzuiwa.pojo.Category" >
+  <insert id="insertSelective" parameterType="com.igeek.pojo.Category" >
     insert into dzw_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -82,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.douzuiwa.pojo.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.igeek.pojo.Category" >
     update dzw_category
     <set >
       <if test="parentId != null" >
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.douzuiwa.pojo.Category" >
+  <update id="updateByPrimaryKey" parameterType="com.igeek.pojo.Category" >
     update dzw_category
     set parent_id = #{parentId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -114,4 +114,10 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getChildrenIdByParentId" resultMap="BaseResultMap" parameterType="int">
+    SELECT <include refid="Base_Column_List"/>
+    from dzw_category
+    WHERE parent_id = #{parentId}
+  </select>
 </mapper>

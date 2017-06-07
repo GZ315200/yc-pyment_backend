@@ -43,7 +43,7 @@
         </filter>
     </appender>
 
-    <logger name="com.douzuiwa" additivity="false" level="INFO" >
+    <logger name="com.igeek" additivity="false" level="INFO" >
         <appender-ref ref="dzw" />
         <appender-ref ref="console"/>
     </logger>
@@ -52,7 +52,7 @@
 
     <!-- geelynote mybatis log 日志 -->
 
-    <logger name="com.douzuiwa.dao" level="DEBUG"/>
+    <logger name="com.igeek.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
         <!--<appender-ref ref="console"/>-->

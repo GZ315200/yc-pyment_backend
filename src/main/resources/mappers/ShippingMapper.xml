@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.douzuiwa.dao.ShippingMapper" >
-  <resultMap id="BaseResultMap" type="com.douzuiwa.pojo.Shipping" >
+<mapper namespace="com.igeek.dao.ShippingMapper" >
+  <resultMap id="BaseResultMap" type="com.igeek.pojo.Shipping" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -31,7 +31,7 @@
     delete from dzw_shipping
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.douzuiwa.pojo.Shipping" >
+  <insert id="insert" parameterType="com.igeek.pojo.Shipping" >
     insert into dzw_shipping (id, user_id, receiver_name, 
       receiver_phone, receiver_mobile, receiver_province, 
       receiver_city, receiver_district, receiver_address, 
@@ -43,7 +43,7 @@
       #{receiverZip,jdbcType=VARCHAR}, now(), now()
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.douzuiwa.pojo.Shipping" >
+  <insert id="insertSelective" parameterType="com.igeek.pojo.Shipping" >
     insert into dzw_shipping
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.douzuiwa.pojo.Shipping" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.igeek.pojo.Shipping" >
     update dzw_shipping
     <set >
       <if test="userId != null" >
@@ -161,7 +161,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.douzuiwa.pojo.Shipping" >
+  <update id="updateByPrimaryKey" parameterType="com.igeek.pojo.Shipping" >
     update dzw_shipping
     set user_id = #{userId,jdbcType=INTEGER},
       receiver_name = #{receiverName,jdbcType=VARCHAR},
