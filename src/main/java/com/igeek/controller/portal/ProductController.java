@@ -34,7 +34,6 @@ public class ProductController {
 
     /**
      * 获取产品列表
-     *
      * @param categoryId
      * @param keyword
      * @param pageNum

@@ -11,12 +11,12 @@
 
 <form name="form1" action="/manage/product/upload" method="post" enctype="multipart/form-data">
     <input type="file" name="upload_file"/>
-    <input type="submit" value="springMVC上传文件"/>
+    <input type="submit" value="springMVC upload file"/>
 </form>
 
 <form name="form2" action="/manage/product/rich_text_img_upload" method="post" enctype="multipart/form-data">
     <input type="file" name="upload_file"/>
-    <input type="submit" value="springMVC上传文件"/>
+    <input type="submit" value="springMVC upload file"/>
 </form>
 
 
