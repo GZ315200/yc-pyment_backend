@@ -116,4 +116,46 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectCartList" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select <include refid="Base_Column_List"/>
+    from dzw_cart
+    where user_id = #{userId}
+    and product_id = #{productId}
+  </select>
+
+  <select id="selectCartListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select <include refid="Base_Column_List"/>
+    from dzw_cart
+    where user_id = #{userId}
+  </select>
+
+    <select id="selectCartProductCheckedStatusByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(1) from dzw_cart where checked = 0 and user_id = #{userId}
+  </select>
+
+  <delete id="deleteByUserIdProductIdList" parameterType="java.util.Map">
+    delete from dzw_cart
+    where user_id = #{userId}
+    <if test="productIdList != null">
+      and product_id in
+      <foreach collection="productIdList" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </delete>
+
+  <update id="updateCheckedOrUnChecked"  parameterType="java.util.Map">
+    update dzw_cart
+    set checked = #{checked},
+    update_time = now()
+    where user_id = #{userId}
+    <if test="productId != null">
+    and product_id = #{productId}
+    </if>
+  </update>
+
+  <select id="selectCountProduct" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select IFNULL(sum(quantity),0) as count from dzw_cart where user_id = #{userId}
+  </select>
 </mapper>

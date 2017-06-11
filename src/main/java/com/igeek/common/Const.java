@@ -17,9 +17,19 @@ public class Const {
 
     public static final String PHONE = "phone";
 
+//    public static final String LIMIT_SUCCESS = "限制成功";
+
     public interface Role {
         int ROLE_CUSTOMER = 0;
         int ROLE_ADMIN = 1;
+    }
+
+    public interface Cart{
+            int CHECKED = 1; //已经选中的状态
+            int UNCHECKED = 0; //未选中的状态
+
+            String LIMIT_SUCCESS = "LIMIT_SUCCESS";
+            String LIMIT_FAILED = "LIMIT_FAILED";
     }
 
     public interface  ProductListOrderBy{
