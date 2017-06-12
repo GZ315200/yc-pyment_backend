@@ -4,6 +4,7 @@ package com.igeek.exception;
  * Created by Gyges on 2017/6/4.
  */
 public class GeneralServiceException  extends RuntimeException{
+
     private String message;
 
     public GeneralServiceException(String message){
@@ -11,12 +12,11 @@ public class GeneralServiceException  extends RuntimeException{
     }
 
     public GeneralServiceException(String message,Throwable s){
-        this.message = message;
-        s.getCause();
+        super(message,s);
     }
 
     public GeneralServiceException(Throwable e){
-        e.printStackTrace();
+        super(e);
     }
 
 
