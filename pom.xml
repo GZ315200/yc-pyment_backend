@@ -255,12 +255,12 @@
       <artifactId>jedis</artifactId>
       <version>2.9.0</version>
     </dependency>
-<!--okhttp-->
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>3.6.0</version>
-    </dependency>
+<!--&lt;!&ndash;okhttp&ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>com.squareup.okhttp3</groupId>-->
+      <!--<artifactId>okhttp</artifactId>-->
+      <!--<version>3.6.0</version>-->
+    <!--</dependency>-->
 
     <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
@@ -297,11 +297,12 @@
 
   <build>
     <finalName>payment</finalName>
+
     <plugins>
       <plugin>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-maven-plugin</artifactId>
-        <version>1.3.2</version>
+        <version>1.3.1</version>
         <configuration>
           <verbose>true</verbose>
           <overwrite>true</overwrite>
