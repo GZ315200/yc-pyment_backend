@@ -4,6 +4,8 @@ import com.igeek.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,5 +20,7 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    Order getOrderNoAndPath(@Param("userId") Integer userId,@Param("orderNo") Long orderNo);
+    Order selectOrderByUserIdAndOrderNo(@Param("userId") Integer userId,@Param("orderNo") Long orderNo);
+
+    Order checkOrderNoExist(Long orderNo);
 }

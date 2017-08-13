@@ -9,11 +9,11 @@ public class PayInfo {
 
     private Long orderNo;
 
-    private Integer payPlatform;
+    private Integer payPlatform;//支付平台(1:支付宝，2：微信)
 
-    private String platformNumber;
+    private String platformNumber;//支付宝支付流水号
 
-    private String platformStatus;
+    private String platformStatus;//支付状态
 
     private Date createTime;
 
