@@ -292,6 +292,14 @@
       <version>2.3.23</version>
     </dependency>
 
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java &ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>com.alipay.sdk</groupId>-->
+      <!--<artifactId>alipay-sdk-java</artifactId>-->
+      <!--<version>3.3.87.ALL</version>-->
+    <!--</dependency>-->
+
+
   </dependencies>
 
 

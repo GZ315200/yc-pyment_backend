@@ -43,15 +43,16 @@ public class ServerResponse<T> implements Serializable {
 
     /**
      * 是否返回成功
+     *
      * @return
      */
     @JsonIgnore
 //    不在序列化结果当中
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }
 
-    public int getStatus(){
+    public int getStatus() {
         return status;
     }
 
@@ -65,59 +66,64 @@ public class ServerResponse<T> implements Serializable {
 
     /**
      * 返回状态码
+     *
      * @param <T>
      * @return
      */
-    public static <T> ServerResponse<T> createBySuccess(){
+    public static <T> ServerResponse<T> createBySuccess() {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode());
     }
 
     /**
      * 返回状态信息、状态码
+     *
      * @param msg
      * @param <T>
      * @return
      */
-    public static <T> ServerResponse<T> createBySuccess(String msg){
-        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg);
+    public static <T> ServerResponse<T> createBySuccess(String msg) {
+        return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(), msg);
     }
 
     /**
      * 返回data
+     *
      * @param data
      * @param <T>
      * @return
      */
-    public static <T> ServerResponse<T> createBySuccess(T data){
-        return new ServerResponse<T>(data,ResponseCode.SUCCESS.getCode());
+    public static <T> ServerResponse<T> createBySuccess(T data) {
+        return new ServerResponse<T>(data, ResponseCode.SUCCESS.getCode());
     }
 
     /**
      * 返回data 、 code 、msg
+     *
      * @param data
      * @param msg
      * @param <T>
      * @return
      */
-    public static <T> ServerResponse<T> createBySuccess(String msg,T data){
-        return new ServerResponse<T>(data,ResponseCode.SUCCESS.getCode(),msg);
+    public static <T> ServerResponse<T> createBySuccess(String msg, T data) {
+        return new ServerResponse<T>(data, ResponseCode.SUCCESS.getCode(), msg);
     }
 
     /**
      * 创建错误code
+     *
      * @param <T>
      * @return
      */
-    public static <T> ServerResponse<T> createByError(){
-        return new ServerResponse<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getCodeDesc());
+    public static <T> ServerResponse<T> createByError() {
+        return new ServerResponse<T>(ResponseCode.ERROR.getCode(), ResponseCode.ERROR.getCodeDesc());
     }
 
-    public static <T> ServerResponse<T> createByErrorMsg(String errorMsg){
-        return new ServerResponse<T>(ResponseCode.ERROR.getCode(),errorMsg);
+    public static <T> ServerResponse<T> createByErrorMsg(String errorMsg) {
+        return new ServerResponse<T>(ResponseCode.ERROR.getCode(), errorMsg);
     }
 
-    public static <T> ServerResponse<T> createByErrorCodeAndMsg(int errorCode,String errorMsg){
-        return new ServerResponse<T>(errorCode,errorMsg);
+    public static <T> ServerResponse<T> createByErrorCodeAndMsg(int errorCode, String errorMsg) {
+        return new ServerResponse<T>(errorCode, errorMsg);
     }
 
 }
